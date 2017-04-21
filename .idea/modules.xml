@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TrackingObject.iml" filepath="$PROJECT_DIR$/TrackingObject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ARBaseLibProj/aRBaseLib/aRBaseLib.iml" filepath="$PROJECT_DIR$/../ARBaseLibProj/aRBaseLib/aRBaseLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

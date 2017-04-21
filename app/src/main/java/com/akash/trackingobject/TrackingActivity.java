@@ -57,6 +57,12 @@ import android.graphics.Bitmap.CompressFormat;
 
 public class TrackingActivity extends AppCompatActivity {
 
+    // Load the native libraries.
+    static {
+        System.loadLibrary("c++_shared");
+        System.loadLibrary("nftSimpleNative");
+    }
+
 
     private Camera mCamera;
     private CameraSurface mPreview;
@@ -123,6 +129,11 @@ public class TrackingActivity extends AppCompatActivity {
                                                    buttonClick.setClickable(false);
                                                    buttonClick.setVisibility(View.INVISIBLE);  //<-----HIDE HERE
                                                    mCamera.takePicture(null, null, mPicture);
+                                          //Now you have a target image in My_Custom_folder
+
+                                                  //rest code is for tracking using ARToolKit SDK IMport
+
+
                                                }
 
                                            });
@@ -211,9 +222,15 @@ public class TrackingActivity extends AppCompatActivity {
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
             dir_image2 = new  File(Environment.getExternalStorageDirectory()+
-                    File.separator+"My Custom Folder");
-            dir_image2.mkdirs();
+                    File.separator+"My_Custom_Folder");
 
+         // dir_image2.mkdirs();
+            if (!dir_image2.exists()) {
+                dir_image2.mkdir();
+            }
+            else{
+                Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_LONG).show();
+            }
 
             File tmpFile = new File(dir_image2,"TempImage.jpg");
             try {
@@ -290,7 +307,7 @@ public class TrackingActivity extends AppCompatActivity {
         String myfile="MyImage"+picId+".jpeg";
 
         dir_image = new  File(Environment.getExternalStorageDirectory()+
-                File.separator+"My Custom Folder");
+                File.separator+"My_Custom_Folder");
         dir_image.mkdirs();
 
         try {
@@ -306,7 +323,7 @@ public class TrackingActivity extends AppCompatActivity {
             fos.close();
 
             Toast.makeText(getApplicationContext(),
-                    "The file is saved at :/My Custom Folder/"+"MyImage"+picId+".jpeg",Toast.LENGTH_LONG).show();
+                    "The file is saved at :/My_Custom_Folder/"+"MyImage"+picId+".jpeg",Toast.LENGTH_LONG).show();
 
             bmp1 = null;
             camera_image.setImageBitmap(bmp1);
